@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Text, View} from 'react-native';
+import {UIColors} from '../../utilities/Constant';
 
 const ListItem = (props) => {
   const {data, ...rest} = props;
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    color: 'white',
+    color: UIColors.white,
   },
 });
 

@@ -3,6 +3,7 @@ import {SafeAreaView, StyleSheet, ScrollView, StatusBar} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {List, ListItem} from './components/List';
 import SearchBox from './components/SearchBox/SearchBox';
+import {UIColors} from './utilities/Constant';
 
 const STATIC_DATA = [
   {title: 'Mumbai'},
@@ -16,7 +17,7 @@ const App = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
+      <SafeAreaView style={styles.safeAreaView}>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
@@ -30,10 +31,12 @@ const App = () => {
     </>
   );
 };
-
 const styles = StyleSheet.create({
+  safeAreaView: {
+    flex: 1,
+  },
   scrollView: {
-    backgroundColor: Colors.lighter,
+    backgroundColor: UIColors.black,
   },
 });
 

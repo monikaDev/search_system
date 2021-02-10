@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {StyleSheet, View, Image, TextInput} from 'react-native';
 
 import LocalImages from '../../../assets/icons';
+import {UIColors} from '../../utilities/Constant';
 
 const SearchBox = ({value, onChangeText, placeholder}) => (
   <View style={styles.inputContainer}>
@@ -10,7 +11,7 @@ const SearchBox = ({value, onChangeText, placeholder}) => (
     <TextInput
       style={styles.searchInput}
       placeholder={placeholder}
-      placeholderTextColor="grey"
+      placeholderTextColor={UIColors.lightGray}
     />
   </View>
 );
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5,
     flexDirection: 'row',
-    backgroundColor: '#2d3035', //TODO: Update it
+    backgroundColor: UIColors.backgroundGray,
     height: 40,
     margin: 15,
   },
@@ -36,9 +37,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   searchInput: {
-    backgroundColor: 'transparent',
+    backgroundColor: UIColors.transparent,
     width: '90%',
-    color: 'white', //TODO: Update it
+    color: UIColors.white,
     padding: 12,
   },
 });
