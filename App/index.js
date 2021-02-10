@@ -1,6 +1,7 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, ScrollView, StatusBar} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import SearchBox from './components/SearchBox/SearchBox';
 
 const App = () => {
   return (
@@ -9,7 +10,9 @@ const App = () => {
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}></ScrollView>
+          style={styles.scrollView}>
+          <SearchBox />
+        </ScrollView>
       </SafeAreaView>
     </>
   );
