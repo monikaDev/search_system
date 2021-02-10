@@ -5,14 +5,6 @@ import SearchBox from './components/SearchBox/SearchBox';
 import {getSuggestions} from './api/search';
 import {UIColors} from './utilities/Constant';
 
-const STATIC_DATA = [
-  {title: 'Mumbai'},
-  {title: 'Bangalore'},
-  {title: 'Delhi'},
-  {title: 'Hyderabad'},
-  {title: 'Chennai'},
-];
-
 const App = () => {
   const [searchTerm, setSearchTerm] = useState();
   const [searchResults, setSearchResults] = useState([]);
