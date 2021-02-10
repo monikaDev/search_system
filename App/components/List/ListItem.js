@@ -4,11 +4,11 @@ import {StyleSheet, Text, View} from 'react-native';
 import {UIColors} from '../../utilities/Constant';
 
 const ListItem = (props) => {
-  const {data, ...rest} = props;
+  const {title, ...rest} = props;
 
   return (
     <View style={styles.container} {...rest}>
-      <Text style={styles.title}>{data.title}</Text>
+      <Text style={styles.title}>{title}</Text>
     </View>
   );
 };
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 });
 
 ListItem.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.string.isRequired,
 };
 
 export default ListItem;
