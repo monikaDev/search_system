@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet, ScrollView, StatusBar} from 'react-native';
 import {List, ListItem} from './components/List';
 import SearchBox from './components/SearchBox/SearchBox';
+import {getSuggestions} from './api/search';
 import {UIColors} from './utilities/Constant';
 
 const STATIC_DATA = [
@@ -13,6 +14,18 @@ const STATIC_DATA = [
 ];
 
 const App = () => {
+  const [searchTerm, setSearchTerm] = useState();
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    getSuggestions(searchTerm)
+      .then((result) => {
+        setSearchResults(result);
+        console.log('result', result); //TODO: Remove
+      })
+      .catch(() => {});
+  }, [searchTerm]);
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -20,10 +33,14 @@ const App = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <SearchBox placeholder="To Search type here" />
+          <SearchBox
+            onChangeText={setSearchTerm}
+            placeholder="To Search type here"
+          />
           <List
-            data={STATIC_DATA}
-            renderItem={({item, index}) => <ListItem data={item} />}
+            data={searchResults}
+            keyExtractor={(title) => title}
+            renderItem={({title, index}) => <ListItem title={title} />}
           />
         </ScrollView>
       </SafeAreaView>
