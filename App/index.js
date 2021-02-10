@@ -4,13 +4,15 @@ import {List, ListItem} from './components/List';
 import SearchBox from './components/SearchBox/SearchBox';
 import {getSuggestions} from './api/search';
 import {UIColors} from './utilities/Constant';
+import useDebounce from './hooks/useDebounce';
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const debouncedSearchTerm = useDebounce(searchTerm, 200);
 
   useEffect(() => {
-    getSuggestions(searchTerm)
+    getSuggestions(debouncedSearchTerm)
       .then((result) => {
         setSearchResults(result);
         console.log('result', result); //TODO: Remove
@@ -18,7 +20,7 @@ const App = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [searchTerm]);
+  }, [debouncedSearchTerm]);
 
   return (
     <>
