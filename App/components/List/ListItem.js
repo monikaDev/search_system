@@ -6,7 +6,7 @@ const ListItem = (props) => {
   const {data, ...rest} = props;
 
   return (
-    <View {...rest}>
+    <View style={styles.container} {...rest}>
       <Text style={styles.title}>{data.title}</Text>
     </View>
   );
@@ -14,10 +14,12 @@ const ListItem = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 5,
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingBottom: 15,
   },
   title: {
-    fontSize: 14,
+    fontSize: 16,
     color: 'white',
   },
 });
