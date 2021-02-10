@@ -7,7 +7,11 @@ import LocalImages from '../../../assets/icons';
 const SearchBox = ({value, onChangeText, placeholder}) => (
   <View style={styles.inputContainer}>
     <Image source={LocalImages.searchGrey} style={styles.searchIcon} />
-    <TextInput style={styles.searchInput} />
+    <TextInput
+      style={styles.searchInput}
+      placeholder={placeholder}
+      placeholderTextColor="grey"
+    />
   </View>
 );
 
