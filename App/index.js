@@ -4,6 +4,14 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {List, ListItem} from './components/List';
 import SearchBox from './components/SearchBox/SearchBox';
 
+const STATIC_DATA = [
+  {title: 'Mumbai'},
+  {title: 'Bangalore'},
+  {title: 'Delhi'},
+  {title: 'Hyderabad'},
+  {title: 'Chennai'},
+];
+
 const App = () => {
   return (
     <>
@@ -14,7 +22,7 @@ const App = () => {
           style={styles.scrollView}>
           <SearchBox placeholder="To Search type here" />
           <List
-            data={}
+            data={STATIC_DATA}
             renderItem={({item, index}) => <ListItem data={item} />}
           />
         </ScrollView>
