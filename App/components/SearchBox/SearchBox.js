@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: UIColors.backgroundGray,
     height: 40,
-    margin: 15,
   },
   searchIcon: {
     height: 20,

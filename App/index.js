@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     backgroundColor: UIColors.black,
+    padding: 15,
   },
 });
 

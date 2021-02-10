@@ -15,9 +15,8 @@ const ListItem = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 15,
-    paddingRight: 15,
-    paddingBottom: 15,
+    padding: 10,
+    backgroundColor: UIColors.backgroundGray,
   },
   title: {
     fontSize: 16,
