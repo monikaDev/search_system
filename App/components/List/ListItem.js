@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 });
 
 ListItem.propTypes = {
-  data: PropTypes.string.isRequired,
+  title: PropTypes.string.isRquired,
 };
 
 export default ListItem;

@@ -6,7 +6,7 @@ import {getSuggestions} from './api/search';
 import {UIColors} from './utilities/Constant';
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = useState();
+  const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,9 @@ const App = () => {
         setSearchResults(result);
         console.log('result', result); //TODO: Remove
       })
-      .catch(() => {});
+      .catch((error) => {
+        console.log(error);
+      });
   }, [searchTerm]);
 
   return (
@@ -31,8 +33,7 @@ const App = () => {
           />
           <List
             data={searchResults}
-            keyExtractor={(title) => title}
-            renderItem={({title, index}) => <ListItem title={title} />}
+            renderItem={({item, index}) => <ListItem title={item} />}
           />
         </ScrollView>
       </SafeAreaView>
