@@ -11,7 +11,7 @@ const App = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <SearchBox />
+          <SearchBox placeholder="To Search type here" />
         </ScrollView>
       </SafeAreaView>
     </>
