@@ -1,6 +1,5 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, ScrollView, StatusBar} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {List, ListItem} from './components/List';
 import SearchBox from './components/SearchBox/SearchBox';
 import {UIColors} from './utilities/Constant';
