@@ -11,6 +11,7 @@ const List = (props) => {
       data={data}
       showsVerticalScrollIndicator={false}
       ItemSeparatorComponent={() => <ListSeparator />}
+      keyboardShouldPersistTaps="always"
     />
   );
 };
