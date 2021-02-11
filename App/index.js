@@ -8,6 +8,7 @@ import {UIColors} from './utilities/Constant';
 import useDebounce from './hooks/useDebounce';
 
 const App = () => {
+  const [isShowList, setIsShowList] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const debouncedSearchTerm = useDebounce(searchTerm.trim(), 200);
@@ -23,37 +24,35 @@ const App = () => {
       });
   }, [debouncedSearchTerm]);
 
-  const updateSearchTerm = (value) => {
-    //TODO: Add focus
+  const onChangeSearchTerm = (value, showList) => {
     setSearchTerm(value);
+    setIsShowList(showList);
   };
 
   return (
     <>
-      <StatusBar
-        textColor="light"
-        backgroundColor={UIColors.gray.light}
-        translucent
-      />
+      <StatusBar backgroundColor={UIColors.gray.light} translucent />
       <SafeAreaView style={styles.safeAreaView}>
         <View style={styles.container}>
           <Text style={styles.title}>Search</Text>
           <SearchBox
-            onChangeText={setSearchTerm}
+            onChangeText={(value) => onChangeSearchTerm(value, true)}
             placeholder="What are you looking for?"
             value={searchTerm}
           />
-          <List
-            data={searchResults}
-            keyExtractor={(item) => item}
-            renderItem={({item, index}) => (
-              <ListItem
-                title={item}
-                searchTerm={searchTerm}
-                updateSearchTerm={updateSearchTerm}
-              />
-            )}
-          />
+          {isShowList && (
+            <List
+              data={searchResults}
+              keyExtractor={(item) => item}
+              renderItem={({item, index}) => (
+                <ListItem
+                  title={item}
+                  searchTerm={searchTerm}
+                  updateSearchTerm={(value) => onChangeSearchTerm(value, false)}
+                />
+              )}
+            />
+          )}
         </View>
       </SafeAreaView>
     </>
