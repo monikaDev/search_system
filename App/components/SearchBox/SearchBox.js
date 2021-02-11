@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, View, Image, TextInput} from 'react-native';
+import {StyleSheet, View, Image, TextInput, Keyboard} from 'react-native';
 
 import LocalImages from '../../../assets/icons';
 import {UIColors} from '../../utilities/Constant';
@@ -9,6 +9,7 @@ import CrossButton from './CrossButton';
 const SearchBox = ({
   value,
   isInputFocus,
+  onFocus,
   onChangeText,
   onCancel,
   placeholder,
@@ -18,10 +19,15 @@ const SearchBox = ({
 
   useEffect(() => {
     if (inputRef && inputRef.current) {
-      isInputFocus ? inputRef.current.focus() : inputRef.current.blur();
+      isInputFocus ? inputRef.current.focus() : Keyboard.dismiss();
     }
     setIsFocused(isInputFocus);
   }, [isInputFocus]);
+
+  const onInputFocus = () => {
+    setIsFocused(true);
+    onFocus();
+  };
 
   return (
     <View
@@ -39,7 +45,7 @@ const SearchBox = ({
         placeholder={placeholder}
         placeholderTextColor={UIColors.gray.light}
         onBlur={() => setIsFocused(false)}
-        onFocus={() => setIsFocused(true)}
+        onFocus={onInputFocus}
       />
       <CrossButton onPress={onCancel} />
     </View>
@@ -48,7 +54,10 @@ const SearchBox = ({
 
 SearchBox.propTypes = {
   value: PropTypes.string,
+  isInputFocus: PropTypes.bool,
+  onFocus: PropTypes.func,
   onChangeText: PropTypes.func,
+  onCancel: PropTypes.func,
   placeholder: PropTypes.string,
 };
 

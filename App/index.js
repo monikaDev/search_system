@@ -56,6 +56,7 @@ const App = () => {
         <View style={styles.container} onStartShouldSetResponder={onOuterClick}>
           <Text style={styles.title}>Search</Text>
           <SearchBox
+            onFocus={() => setIsInputFocus(true)}
             isInputFocus={isInputFocus}
             onChangeText={(value) => onChangeSearchTerm(value)}
             placeholder="What are you looking for?"
