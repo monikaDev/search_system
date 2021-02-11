@@ -1,3 +1,3 @@
 export const isEmptyString = (string) => {
-  return string === '';
+  return string === '' || string === undefined;
 };

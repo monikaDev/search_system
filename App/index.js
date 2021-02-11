@@ -39,7 +39,9 @@ const App = () => {
     <>
       <StatusBar backgroundColor={UIColors.gray.light} translucent />
       <SafeAreaView style={styles.safeAreaView}>
-        <View style={styles.container}>
+        <View
+          style={styles.container}
+          onStartShouldSetResponder={() => setIsShowList(false)}>
           <Text style={styles.title}>Search</Text>
           <SearchBox
             onChangeText={(value) => onChangeSearchTerm(value, true)}
@@ -67,6 +69,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
+    flex: 1,
   },
   safeAreaView: {
     backgroundColor: UIColors.black,
