@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {UIColors} from '../../utilities/Constant';
 
 const ListItem = (props) => {
-  const {title, ...rest} = props;
+  const {title, updateSearchTerm, ...rest} = props;
 
   return (
-    <View style={styles.container} {...rest}>
+    <TouchableOpacity
+      {...rest}
+      style={styles.container}
+      onPress={() => updateSearchTerm(`${title} `)}>
       <Text style={styles.title}>{title}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
