@@ -10,11 +10,12 @@ import {getCurrentSearchKey} from './utilities/helper';
 import {isEmptyString} from './utilities/validation';
 
 const App = () => {
+  const [isInputFocus, setIsInputFocus] = useState(false);
   const [isShowList, setIsShowList] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [currentSearchTerm, setCurrentSearchTerm] = useState();
-  const debouncedSearchTerm = useDebounce(currentSearchTerm, 500);
+  const debouncedSearchTerm = useDebounce(currentSearchTerm, 200);
 
   useEffect(() => {
     setCurrentSearchTerm(getCurrentSearchKey(searchTerm));
@@ -24,7 +25,6 @@ const App = () => {
     getSuggestions(debouncedSearchTerm)
       .then((result) => {
         setSearchResults(result);
-        console.log('result', result); //TODO: Remove
       })
       .catch((error) => {
         console.log(error);
@@ -34,6 +34,7 @@ const App = () => {
   const onChangeSearchTerm = (value) => {
     setSearchTerm(value);
     setIsShowList(!isEmptyString(value));
+    setIsInputFocus(true);
   };
 
   const updateSearchTerm = (value) => {
@@ -43,15 +44,19 @@ const App = () => {
     setIsShowList(false);
   };
 
+  const onOuterClick = () => {
+    setIsShowList(false);
+    setIsInputFocus(false);
+  };
+
   return (
     <>
       <StatusBar backgroundColor={UIColors.gray.light} translucent />
       <SafeAreaView style={styles.safeAreaView}>
-        <View
-          style={styles.container}
-          onStartShouldSetResponder={() => setIsShowList(false)}>
+        <View style={styles.container} onStartShouldSetResponder={onOuterClick}>
           <Text style={styles.title}>Search</Text>
           <SearchBox
+            isInputFocus={isInputFocus}
             onChangeText={(value) => onChangeSearchTerm(value)}
             placeholder="What are you looking for?"
             value={searchTerm}

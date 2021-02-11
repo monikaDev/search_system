@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, View, Image, TextInput} from 'react-native';
 
@@ -6,16 +6,22 @@ import LocalImages from '../../../assets/icons';
 import {UIColors} from '../../utilities/Constant';
 import CrossButton from './CrossButton';
 
-const SearchBox = ({value, onChangeText, onCancel, placeholder}) => {
+const SearchBox = ({
+  value,
+  isInputFocus,
+  onChangeText,
+  onCancel,
+  placeholder,
+}) => {
   const [isFocused, setIsFocused] = useState(true);
+  const inputRef = useRef();
 
-  const onInputBlur = () => {
-    setIsFocused(false);
-  };
-
-  const onInputFocus = () => {
-    setIsFocused(true);
-  };
+  useEffect(() => {
+    if (inputRef && inputRef.current) {
+      isInputFocus ? inputRef.current.focus() : inputRef.current.blur();
+    }
+    setIsFocused(isInputFocus);
+  }, [isInputFocus]);
 
   return (
     <View
@@ -25,14 +31,15 @@ const SearchBox = ({value, onChangeText, onCancel, placeholder}) => {
       ]}>
       <Image source={LocalImages.searchGrey} style={styles.searchIcon} />
       <TextInput
+        ref={inputRef}
+        style={styles.searchInput}
         autoFocus={true}
         value={value}
         onChangeText={onChangeText}
-        style={styles.searchInput}
         placeholder={placeholder}
         placeholderTextColor={UIColors.gray.light}
-        onBlur={onInputBlur}
-        onFocus={onInputFocus}
+        onBlur={() => setIsFocused(false)}
+        onFocus={() => setIsFocused(true)}
       />
       <CrossButton onPress={onCancel} />
     </View>
