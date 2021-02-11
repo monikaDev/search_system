@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, View, Image, TextInput} from 'react-native';
 
@@ -7,6 +7,7 @@ import {UIColors} from '../../utilities/Constant';
 
 const SearchBox = ({value, onChangeText, placeholder}) => {
   const [isFocused, setIsFocused] = useState(true);
+
   const onInputBlur = () => {
     setIsFocused(false);
   };
@@ -17,10 +18,11 @@ const SearchBox = ({value, onChangeText, placeholder}) => {
     <View
       style={[
         styles.inputContainer,
-        {borderColor: isFocused ? UIColors.lightPink : UIColors.transparent},
+        {borderColor: isFocused ? UIColors.lightPink : UIColors.gray.medium},
       ]}>
       <Image source={LocalImages.searchGrey} style={styles.searchIcon} />
       <TextInput
+        autoFocus={true}
         value={value}
         onChangeText={onChangeText}
         style={styles.searchInput}
@@ -47,6 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: UIColors.gray.medium,
     height: 40,
     borderWidth: 1,
+    marginTop: 20,
   },
   searchIcon: {
     height: 20,
@@ -58,6 +61,7 @@ const styles = StyleSheet.create({
     width: '90%',
     color: UIColors.white,
     padding: 12,
+    fontSize: 14,
   },
 });
 
