@@ -9,7 +9,7 @@ import useDebounce from './hooks/useDebounce';
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const debouncedSearchTerm = useDebounce(searchTerm, 200);
+  const debouncedSearchTerm = useDebounce(searchTerm.trim(), 200);
 
   useEffect(() => {
     getSuggestions(debouncedSearchTerm)
@@ -32,10 +32,17 @@ const App = () => {
           <SearchBox
             onChangeText={setSearchTerm}
             placeholder="To Search type here"
+            value={searchTerm}
           />
           <List
             data={searchResults}
-            renderItem={({item, index}) => <ListItem title={item} />}
+            renderItem={({item, index}) => (
+              <ListItem
+                title={item}
+                searchTerm={searchTerm}
+                updateSearchTerm={setSearchTerm}
+              />
+            )}
           />
         </ScrollView>
       </SafeAreaView>

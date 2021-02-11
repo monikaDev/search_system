@@ -9,6 +9,7 @@ const SearchBox = ({value, onChangeText, placeholder}) => (
   <View style={styles.inputContainer}>
     <Image source={LocalImages.searchGrey} style={styles.searchIcon} />
     <TextInput
+      value={value}
       onChangeText={onChangeText}
       style={styles.searchInput}
       placeholder={placeholder}
