@@ -1,3 +1,6 @@
+export const EMPTY_STRING = '';
+export const SINGLE_SPACE = ' ';
+
 export const UIColors = {
   white: '#FFFFFF',
   black: '#000000',

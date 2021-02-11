@@ -1,7 +1,5 @@
+import {EMPTY_STRING, SINGLE_SPACE} from './Constant';
 import {isEmptyString} from './validation';
-
-const EMPTY_STRING = '';
-const SINGLE_SPACE = ' ';
 
 export const getCurrentSearchKey = (value) => {
   if (isEmptyString(value)) return EMPTY_STRING;
