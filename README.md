@@ -9,7 +9,6 @@ First clone the repo to your desired directory.
 ```sh
 $ git clone https://github.com/monikaDev/search_system.git
 $ cd search_system
-$ git checkout feature/search-widget
 ```
 
 Once that has completed you will need to install required dependencies.
