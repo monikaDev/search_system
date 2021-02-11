@@ -4,7 +4,7 @@ import {List, ListItem} from './components/List';
 import SearchBox from './components/SearchBox/SearchBox';
 import StatusBar from './components/StatusBar/StatusBar';
 import {getSuggestions} from './api/search';
-import {UIColors} from './utilities/Constant';
+import {UIColors, SINGLE_SPACE} from './utilities/Constant';
 import useDebounce from './hooks/useDebounce';
 import {getCurrentSearchKey} from './utilities/helper';
 
@@ -30,9 +30,16 @@ const App = () => {
       });
   }, [debouncedSearchTerm]);
 
-  const onChangeSearchTerm = (value, showList) => {
+  const onChangeSearchTerm = (value) => {
     setSearchTerm(value);
-    setIsShowList(showList);
+    setIsShowList(true);
+  };
+
+  const updateSearchTerm = (value) => {
+    const searchArray = searchTerm.split(SINGLE_SPACE);
+    searchArray[searchArray.length - 1] = value;
+    setSearchTerm(searchArray.join(SINGLE_SPACE));
+    setIsShowList(false);
   };
 
   return (
@@ -44,7 +51,7 @@ const App = () => {
           onStartShouldSetResponder={() => setIsShowList(false)}>
           <Text style={styles.title}>Search</Text>
           <SearchBox
-            onChangeText={(value) => onChangeSearchTerm(value, true)}
+            onChangeText={(value) => onChangeSearchTerm(value)}
             placeholder="What are you looking for?"
             value={searchTerm}
           />
@@ -56,7 +63,7 @@ const App = () => {
                 <ListItem
                   title={item}
                   searchTerm={currentSearchTerm}
-                  updateSearchTerm={(value) => onChangeSearchTerm(value, false)}
+                  updateSearchTerm={(value) => updateSearchTerm(value)}
                 />
               )}
             />
