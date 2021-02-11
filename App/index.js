@@ -4,14 +4,13 @@
 
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, SafeAreaView, View, Text} from 'react-native';
-import {List, ListItem} from './components/List';
-import SearchBox from './components/SearchBox/SearchBox';
 import StatusBar from './components/StatusBar/StatusBar';
 import {getSuggestions} from './api/search';
 import useDebounce from './hooks/useDebounce';
-import {UIColors, SINGLE_SPACE, EMPTY_STRING} from './utilities/Constant';
+import {UIColors, SINGLE_SPACE} from './utilities/Constant';
 import {getCurrentSearchKey} from './utilities/helper';
 import {isEmptyString} from './utilities/validation';
+import AutoSuggestionBox from './components/AutoSuggestionBox/AutoSuggestionBox';
 
 const DEBOUNCE_DELAY = 200;
 const App = () => {
@@ -64,27 +63,17 @@ const App = () => {
       <SafeAreaView style={styles.safeAreaView}>
         <View style={styles.container} onStartShouldSetResponder={onOuterClick}>
           <Text style={styles.title}>Search</Text>
-          <SearchBox
-            onFocus={() => setIsInputFocus(true)}
+          <AutoSuggestionBox
+            isShowList={isShowList}
+            searchTerm={searchTerm}
             isInputFocus={isInputFocus}
-            onChangeText={(value) => onChangeSearchTerm(value)}
-            placeholder="What are you looking for?"
-            value={searchTerm}
-            onCancel={() => setSearchTerm(EMPTY_STRING)}
+            currentSearchTerm={currentSearchTerm}
+            searchResults={searchResults}
+            onChangeSearchTerm={onChangeSearchTerm}
+            setIsInputFocus={setIsInputFocus}
+            setSearchTerm={setSearchTerm}
+            updateSearchTerm={updateSearchTerm}
           />
-          {isShowList && (
-            <List
-              data={searchResults}
-              keyExtractor={(item) => item}
-              renderItem={({item, index}) => (
-                <ListItem
-                  title={item}
-                  searchTerm={currentSearchTerm}
-                  updateSearchTerm={(value) => updateSearchTerm(value)}
-                />
-              )}
-            />
-          )}
         </View>
       </SafeAreaView>
     </>
