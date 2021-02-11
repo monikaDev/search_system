@@ -12,7 +12,12 @@ const App = () => {
   const [isShowList, setIsShowList] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const debouncedSearchTerm = useDebounce(getCurrentSearchKey(searchTerm), 200);
+  const [currentSearchTerm, setCurrentSearchTerm] = useState();
+  const debouncedSearchTerm = useDebounce(currentSearchTerm, 200);
+
+  useEffect(() => {
+    setCurrentSearchTerm(getCurrentSearchKey(searchTerm));
+  }, [searchTerm]);
 
   useEffect(() => {
     getSuggestions(debouncedSearchTerm)
@@ -48,7 +53,7 @@ const App = () => {
               renderItem={({item, index}) => (
                 <ListItem
                   title={item}
-                  searchTerm={searchTerm}
+                  searchTerm={currentSearchTerm}
                   updateSearchTerm={(value) => onChangeSearchTerm(value, false)}
                 />
               )}
