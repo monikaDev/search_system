@@ -1,18 +1,33 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {UIColors} from '../../utilities/Constant';
 import {isEmptyString} from '../../utilities/validation';
 
 const ListItem = (props) => {
-  const {title, updateSearchTerm, ...rest} = props;
+  const {title, searchTerm, updateSearchTerm, ...rest} = props;
+
+  const titleToDisplay = useMemo(() => {
+    const regex = new RegExp(`(${searchTerm})`, 'gi');
+    var titleArray = title.split(regex);
+    titleArray.forEach((element, index) => {
+      if (element === searchTerm) {
+        titleArray[index] = (
+          <Text style={styles.highlightedTitle} key={index}>
+            {titleArray[index]}
+          </Text>
+        );
+      }
+    });
+    return <Text style={styles.title}>{titleArray}</Text>;
+  }, [searchTerm, title]);
 
   return !isEmptyString(title) ? (
     <TouchableOpacity
       {...rest}
       style={styles.container}
       onPress={() => updateSearchTerm(`${title} `)}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{titleToDisplay}</Text>
     </TouchableOpacity>
   ) : null;
 };
@@ -25,6 +40,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     color: UIColors.white,
+  },
+  highlightedTitle: {
+    fontSize: 16,
+    color: UIColors.black,
+    backgroundColor: UIColors.white,
   },
 });
 
