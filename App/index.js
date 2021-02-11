@@ -6,12 +6,13 @@ import StatusBar from './components/StatusBar/StatusBar';
 import {getSuggestions} from './api/search';
 import {UIColors} from './utilities/Constant';
 import useDebounce from './hooks/useDebounce';
+import {getCurrentSearchKey} from './utilities/helper';
 
 const App = () => {
   const [isShowList, setIsShowList] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const debouncedSearchTerm = useDebounce(searchTerm.trim(), 200);
+  const debouncedSearchTerm = useDebounce(getCurrentSearchKey(searchTerm), 200);
 
   useEffect(() => {
     getSuggestions(debouncedSearchTerm)
@@ -60,7 +61,7 @@ const App = () => {
 };
 const styles = StyleSheet.create({
   container: {
-    padding: 15,
+    padding: 20,
   },
   safeAreaView: {
     backgroundColor: UIColors.black,
