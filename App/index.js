@@ -4,16 +4,17 @@ import {List, ListItem} from './components/List';
 import SearchBox from './components/SearchBox/SearchBox';
 import StatusBar from './components/StatusBar/StatusBar';
 import {getSuggestions} from './api/search';
-import {UIColors, SINGLE_SPACE} from './utilities/Constant';
+import {UIColors, SINGLE_SPACE, EMPTY_STRING} from './utilities/Constant';
 import useDebounce from './hooks/useDebounce';
 import {getCurrentSearchKey} from './utilities/helper';
+import {isEmptyString} from './utilities/validation';
 
 const App = () => {
   const [isShowList, setIsShowList] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [currentSearchTerm, setCurrentSearchTerm] = useState();
-  const debouncedSearchTerm = useDebounce(currentSearchTerm, 200);
+  const debouncedSearchTerm = useDebounce(currentSearchTerm, 500);
 
   useEffect(() => {
     setCurrentSearchTerm(getCurrentSearchKey(searchTerm));
@@ -32,7 +33,7 @@ const App = () => {
 
   const onChangeSearchTerm = (value) => {
     setSearchTerm(value);
-    setIsShowList(true);
+    setIsShowList(!isEmptyString(value));
   };
 
   const updateSearchTerm = (value) => {
@@ -54,6 +55,7 @@ const App = () => {
             onChangeText={(value) => onChangeSearchTerm(value)}
             placeholder="What are you looking for?"
             value={searchTerm}
+            onCancel={() => setSearchTerm(EMPTY_STRING)}
           />
           {isShowList && (
             <List
@@ -73,6 +75,7 @@ const App = () => {
     </>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     padding: 20,

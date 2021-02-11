@@ -4,16 +4,19 @@ import {StyleSheet, View, Image, TextInput} from 'react-native';
 
 import LocalImages from '../../../assets/icons';
 import {UIColors} from '../../utilities/Constant';
+import CrossButton from './CrossButton';
 
-const SearchBox = ({value, onChangeText, placeholder}) => {
+const SearchBox = ({value, onChangeText, onCancel, placeholder}) => {
   const [isFocused, setIsFocused] = useState(true);
 
   const onInputBlur = () => {
     setIsFocused(false);
   };
+
   const onInputFocus = () => {
     setIsFocused(true);
   };
+
   return (
     <View
       style={[
@@ -31,6 +34,7 @@ const SearchBox = ({value, onChangeText, placeholder}) => {
         onBlur={onInputBlur}
         onFocus={onInputFocus}
       />
+      <CrossButton onPress={onCancel} />
     </View>
   );
 };
@@ -58,7 +62,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     backgroundColor: UIColors.transparent,
-    width: '90%',
+    width: '85%',
     color: UIColors.white,
     padding: 12,
     fontSize: 14,

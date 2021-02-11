@@ -9,6 +9,7 @@ const ListItem = (props) => {
 
   const titleToDisplay = useMemo(() => {
     const regex = new RegExp(`(${searchTerm})`, 'gi');
+    if (isEmptyString(title)) return;
     var titleArray = title.split(regex);
     titleArray.forEach((element, index) => {
       if (element === searchTerm) {
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
 });
 
 ListItem.propTypes = {
-  title: PropTypes.string.isRquired,
+  title: PropTypes.string,
 };
 
 export default ListItem;
