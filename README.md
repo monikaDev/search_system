@@ -39,6 +39,9 @@ $ cd .. && yarn android
 ```
 
 ---
+## Demo
+![](auto_suggestion_search_bar.gif)
+
 
 ## Project Structure
 
