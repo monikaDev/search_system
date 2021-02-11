@@ -1,22 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, View, Image, TextInput} from 'react-native';
 
 import LocalImages from '../../../assets/icons';
 import {UIColors} from '../../utilities/Constant';
 
-const SearchBox = ({value, onChangeText, placeholder}) => (
-  <View style={styles.inputContainer}>
-    <Image source={LocalImages.searchGrey} style={styles.searchIcon} />
-    <TextInput
-      value={value}
-      onChangeText={onChangeText}
-      style={styles.searchInput}
-      placeholder={placeholder}
-      placeholderTextColor={UIColors.lightGray}
-    />
-  </View>
-);
+const SearchBox = ({value, onChangeText, placeholder}) => {
+  const [isFocused, setIsFocused] = useState(true);
+  const onInputBlur = () => {
+    setIsFocused(false);
+  };
+  const onInputFocus = () => {
+    setIsFocused(true);
+  };
+  return (
+    <View
+      style={[
+        styles.inputContainer,
+        {borderColor: isFocused ? UIColors.lightPink : UIColors.transparent},
+      ]}>
+      <Image source={LocalImages.searchGrey} style={styles.searchIcon} />
+      <TextInput
+        value={value}
+        onChangeText={onChangeText}
+        style={styles.searchInput}
+        placeholder={placeholder}
+        placeholderTextColor={UIColors.gray.light}
+        onBlur={onInputBlur}
+        onFocus={onInputFocus}
+      />
+    </View>
+  );
+};
 
 SearchBox.propTypes = {
   value: PropTypes.string,
@@ -29,8 +44,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5,
     flexDirection: 'row',
-    backgroundColor: UIColors.backgroundGray,
+    backgroundColor: UIColors.gray.medium,
     height: 40,
+    borderWidth: 1,
   },
   searchIcon: {
     height: 20,

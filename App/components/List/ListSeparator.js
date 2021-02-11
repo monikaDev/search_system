@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   separator: {
     height: 0.5,
     width: '100%',
-    backgroundColor: UIColors.lightGray,
+    backgroundColor: UIColors.gray.light,
   },
 });
 

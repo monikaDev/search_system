@@ -19,7 +19,7 @@ const ListItem = (props) => {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    backgroundColor: UIColors.backgroundGray,
+    backgroundColor: UIColors.gray.medium,
   },
   title: {
     fontSize: 16,
