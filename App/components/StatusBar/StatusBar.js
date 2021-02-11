@@ -1,7 +1,12 @@
+/**
+ * A reusable component for StatusBar having props `textColor`, `backgroundColor`.
+ * It's having light theme by default.
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import {StatusBar as RNStatusBar} from 'react-native';
+
 import {UIColors} from '../../utilities/Constant';
 
 const StatusBar = (props) => {

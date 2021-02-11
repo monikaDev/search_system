@@ -1,3 +1,6 @@
+/**
+ * This file contains all the constants
+ */
 export const EMPTY_STRING = '';
 export const SINGLE_SPACE = ' ';
 

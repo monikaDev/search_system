@@ -1,3 +1,6 @@
+/**
+ * A reusable component for searching.
+ */
 import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, View, Image, TextInput, Keyboard} from 'react-native';

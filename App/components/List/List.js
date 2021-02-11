@@ -1,3 +1,7 @@
+/**
+ * A reusable component for displaying list data and handling it.
+ * Having default separator for list.
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {FlatList} from 'react-native';

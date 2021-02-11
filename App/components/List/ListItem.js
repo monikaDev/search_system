@@ -7,11 +7,13 @@ import {isEmptyString} from '../../utilities/validation';
 const ListItem = (props) => {
   const {title, searchTerm, updateSearchTerm, ...rest} = props;
 
+  //It return the formatted title
   const titleToDisplay = useMemo(() => {
     const regex = new RegExp(`(${searchTerm})`, 'gi');
     if (isEmptyString(title)) return;
     var titleArray = title.split(regex);
     titleArray.forEach((element, index) => {
+      //If the element is same as searchTerm then it will converted into highlightedTitle
       if (element === searchTerm) {
         titleArray[index] = (
           <Text style={styles.highlightedTitle} key={index}>

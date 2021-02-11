@@ -1,6 +1,8 @@
 var FAILURE_COEFF = 10;
 var MAX_SERVER_LATENCY = 200;
-
+/**
+ * Mock API declaration
+ */
 const getRandomBool = (n) => {
   var maxRandomCoeff = 1000;
   if (n > maxRandomCoeff) n = maxRandomCoeff;
