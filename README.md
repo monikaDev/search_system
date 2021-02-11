@@ -28,7 +28,7 @@ $ cd ios && pod install
 
 ## Building Android
 
-Android builds require that the Android SDK is installed. Run `yarn android` to start the project.
+Android build requires to have the Android SDK installed. Run `yarn run android` to start the app.
 
 In the case of build issues on Android, try these commands:
 
@@ -39,9 +39,10 @@ $ cd .. && yarn android
 ```
 
 ---
-## Demo
-![](auto_suggestion_search_bar.gif)
 
+## Demo
+
+![](auto_suggestion_search_bar.gif)
 
 ## Project Structure
 
@@ -60,6 +61,8 @@ Using component structure. Which is easy to understand and access the files.
 ## Component Used
 
 - `StatusBar` : A reusable component for StatusBar having props `textColor`, `backgroundColor`. It's having light theme by default. We can use it as per requirement.
+
+- `AutoSuggestionBox` : A reusable auto suggestion box. Accept the search input and show the results.
 
 - `SearchBox` : A reusable component for searching. It can be user at other places as well, as in this we can update placeholder text, handle focusing of input field and get the event onChangeText.
 
