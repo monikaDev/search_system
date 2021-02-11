@@ -51,7 +51,7 @@ const App = () => {
 
   return (
     <>
-      <StatusBar backgroundColor={UIColors.gray.light} translucent />
+      <StatusBar />
       <SafeAreaView style={styles.safeAreaView}>
         <View style={styles.container} onStartShouldSetResponder={onOuterClick}>
           <Text style={styles.title}>Search</Text>
