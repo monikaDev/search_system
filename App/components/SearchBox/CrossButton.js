@@ -7,7 +7,7 @@ import LocalImages from '../../../assets/icons';
 const CrossButton = ({onPress}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image source={LocalImages.crossGrey} style={styles.crossIcon} />
+      <Image source={LocalImages.crossGray} style={styles.crossIcon} />
     </TouchableOpacity>
   );
 };

@@ -29,7 +29,7 @@ const SearchBox = ({
         styles.inputContainer,
         {borderColor: isFocused ? UIColors.lightPink : UIColors.gray.medium},
       ]}>
-      <Image source={LocalImages.searchGrey} style={styles.searchIcon} />
+      <Image source={LocalImages.searchGray} style={styles.searchIcon} />
       <TextInput
         ref={inputRef}
         style={styles.searchInput}

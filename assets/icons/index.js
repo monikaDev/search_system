@@ -1,6 +1,6 @@
 const LocalImages = {
-  searchGrey: require('./search-icon-grey.png'),
-  crossGrey: require('./cross-icon-grey.png'),
+  searchGray: require('./search-icon-gray.png'),
+  crossGray: require('./cross-icon-gray.png'),
 };
 
 export default LocalImages;
